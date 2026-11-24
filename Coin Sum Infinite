@@ -1,0 +1,15 @@
+int Solution::coinchange2(vector<int> &A, int B) {
+    const int MOD = 1000007;
+
+    vector<int> dp(B + 1, 0);
+
+    dp[0] = 1;
+
+    for (int coin : A) {
+        for (int j = coin; j <= B; j++) {
+            dp[j] = (dp[j] + dp[j - coin]) % MOD;
+        }
+    }
+
+    return dp[B];
+}
